@@ -9,7 +9,7 @@ package character;
  *
  * @author apple
  */
-public class Skill 
+public class Skill
 {
     private float manaCost;
     private float projectileSpeed;

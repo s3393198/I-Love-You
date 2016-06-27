@@ -29,8 +29,6 @@ public class Character
         this.havingPower = havingPower;
     }
     
-    
-
     public double getMoveSpd() {
         return moveSpd;
     }

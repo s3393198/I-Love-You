@@ -11,12 +11,16 @@ package character;
  */
 public class DefaultCharacter extends Character
 {
+    static double originalMana;
+    static double remainingMana;
     
     public DefaultCharacter(double moveSpd, double hp, double mana) {
         super(moveSpd, hp, mana);
         moveSpd = 50;
         hp = 100;
         mana = 100;
+        originalMana = mana;
+        
     }
     
     
