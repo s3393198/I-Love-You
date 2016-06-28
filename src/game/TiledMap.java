@@ -5,6 +5,8 @@
  */
 package game;
 
+import javafx.scene.image.Image;
+
 /**
  *
  * @author apple
@@ -12,11 +14,7 @@ package game;
 public class TiledMap 
 {
     public int map[][];
-    
-    public TiledMap(int map[][])
-    {
-        mapData();
-    }
+    public Image image;
     
     public void mapData()
     {
@@ -53,7 +51,7 @@ public class TiledMap
                 {
                     case 0:
                     {
-                        
+                        image = new Image("/assets/earth.png");
                     }
                     case 1:
                     {

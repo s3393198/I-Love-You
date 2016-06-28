@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Iloveyou.jar" size="10951" download="eager" />
+    <jar href="Iloveyou.jar" size="12618" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Iloveyou" >
     <param name="requiredFXVersion" value="8.0+"/>
