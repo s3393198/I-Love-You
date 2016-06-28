@@ -3,27 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package game;
+package iloveyou2;
 
+import Character.DefaultCharacter;
+import java.io.File;
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
  *
  * @author apple
  */
-public class MainGame extends Application {
-
-    Game game = new Game();
+public class Iloveyou2 extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        Parent root = FXMLLoader.load(getClass().getResource("FXMLDocument.fxml"));
+        
+        Scene scene = new Scene(root);
 
-        game.initialize(stage);
-        game.beginGameLoop();
-       
+        stage.setScene(scene);
         stage.show();
-       
     }
 
     /**
@@ -32,5 +37,5 @@ public class MainGame extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
+    
 }
