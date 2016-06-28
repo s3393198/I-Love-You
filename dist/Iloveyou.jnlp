@@ -8,15 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-<<<<<<< HEAD
-    <jar href="Iloveyou.jar" size="12618" download="eager" />
-=======
-    <jar href="Iloveyou.jar" size="9570" download="eager" />
->>>>>>> parent of 476da56... Modified skill, add some dummy data to Fireball
+    <jar href="Iloveyou.jar" size="9734" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="Iloveyou" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="game.MainGame"  name="Iloveyou" />
+  <jfx:javafx-desc  width="800" height="600" main-class="iloveyou2.Iloveyou2"  name="Iloveyou" />
   <update check="always"/>
 </jnlp>

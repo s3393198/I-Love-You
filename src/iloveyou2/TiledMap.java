@@ -49,7 +49,7 @@ public class TiledMap
     { 
         int xPos = 0;
         int yPos = 4;
-        int size = 25;
+        int size = 20;
         for (int i = 0; i < map.length; i++)
         {
             for (int j = 0; j < map[i].length; j++)
