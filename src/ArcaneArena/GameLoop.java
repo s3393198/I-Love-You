@@ -15,16 +15,20 @@ public class GameLoop extends AnimationTimer {
 
     @Override
     public void handle(long now) {
-        
+        ArcaneArena.player.update();
+        System.out.println("X is: " + ArcaneArena.player.getiX());
+        System.out.println("Y is: " + ArcaneArena.player.getiY());
+        System.out.println("game loop running");
     }
     
     @Override
     public void start() {
+        super.start();
         
     }
     
     @Override
     public void stop() {
-        
+        super.stop();
     }
 }

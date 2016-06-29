@@ -8,6 +8,7 @@ package ArcaneArena;
 import Character.DefaultCharacter;
 import javafx.scene.image.Image;
 
+
 /**
  *
  * @author NangTrongVuon
@@ -22,7 +23,12 @@ public class Player extends DefaultCharacter {
 
     @Override
     public void update() {
-    
+        if (ArcaneArena.right) { iX += vX; }
+        if (ArcaneArena.up) { iY -= vY; }
+        if (ArcaneArena.down) { iY += vY; }
+        if (ArcaneArena.left) { iX -= vX; }
+        spriteFrame.setTranslateX(iX);
+        spriteFrame.setTranslateY(iY);
     }
     
     @Override
