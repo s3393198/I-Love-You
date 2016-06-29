@@ -1,8 +1,7 @@
 package Character;
 
-
+import ArcaneArena.Sprite;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -14,41 +13,109 @@ import javafx.scene.image.ImageView;
  *
  * @author apple
  */
-public class DefaultCharacter 
+public abstract class DefaultCharacter extends Sprite
 {
-    private int hp;
-    private int mana;
-    private double moveSpd;
-
-    public DefaultCharacter(int hp, int mana, double moveSpd) {
-        this.hp = hp;
-        this.mana = mana;
-        this.moveSpd = moveSpd;
-    }
+   
+    protected double vX, vY, hp, damage, offsetX, offsetY;
+    protected float boundScale, boundRot, friction, gravity, bounce;
     
-    public int getHp() {
+    public DefaultCharacter(String svgData, double xLocation, double yLocation, Image... spriteCells) {
+        super(svgData, xLocation, yLocation, spriteCells);
+        boundScale = boundRot = friction = gravity = bounce = 0;
+        vX = vY = offsetX = offsetY = 0;
+        hp = 100;
+        damage = 10;
+    }
+
+    public double getvX() {
+        return vX;
+    }
+
+    public void setvX(double vX) {
+        this.vX = vX;
+    }
+
+    public double getvY() {
+        return vY;
+    }
+
+    public void setvY(double vY) {
+        this.vY = vY;
+    }
+
+    public double getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
+    public void setHp(double hp) {
         this.hp = hp;
     }
 
-    public int getMana() {
-        return mana;
+    public double getDamage() {
+        return damage;
     }
 
-    public void setMana(int mana) {
-        this.mana = mana;
+    public void setDamage(double damage) {
+        this.damage = damage;
     }
 
-    public double getMoveSpd() {
-        return moveSpd;
+    public double getOffsetX() {
+        return offsetX;
     }
 
-    public void setMoveSpd(double moveSpd) {
-        this.moveSpd = moveSpd;
+    public void setOffsetX(double offsetX) {
+        this.offsetX = offsetX;
     }
+
+    public double getOffsetY() {
+        return offsetY;
+    }
+
+    public void setOffsetY(double offsetY) {
+        this.offsetY = offsetY;
+    }
+
+    public float getBoundScale() {
+        return boundScale;
+    }
+
+    public void setBoundScale(float boundScale) {
+        this.boundScale = boundScale;
+    }
+
+    public float getBoundRot() {
+        return boundRot;
+    }
+
+    public void setBoundRot(float boundRot) {
+        this.boundRot = boundRot;
+    }
+
+    public float getFriction() {
+        return friction;
+    }
+
+    public void setFriction(float friction) {
+        this.friction = friction;
+    }
+
+    public float getGravity() {
+        return gravity;
+    }
+
+    public void setGravity(float gravity) {
+        this.gravity = gravity;
+    }
+
+    public float getBounce() {
+        return bounce;
+    }
+
+    public void setBounce(float bounce) {
+        this.bounce = bounce;
+    }
+   
+    
     
     
 }
