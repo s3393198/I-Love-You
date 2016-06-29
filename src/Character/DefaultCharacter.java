@@ -16,15 +16,20 @@ import javafx.scene.image.Image;
 public abstract class DefaultCharacter extends Sprite
 {
    
+    // vX, vY = velocity X & Y
     protected double vX, vY, hp, damage, offsetX, offsetY;
     protected float boundScale, boundRot, friction, gravity, bounce;
     
-    public DefaultCharacter(String svgData, double xLocation, double yLocation, Image... spriteCells) {
-        super(svgData, xLocation, yLocation, spriteCells);
+    public DefaultCharacter(double xLocation, double yLocation, Image... spriteCells) {
+        super(xLocation, yLocation, spriteCells);
         boundScale = boundRot = friction = gravity = bounce = 0;
         vX = vY = offsetX = offsetY = 0;
         hp = 100;
         damage = 10;
+    }
+    
+    public Boolean collide(Sprite object) {
+        return false;
     }
 
     public double getvX() {

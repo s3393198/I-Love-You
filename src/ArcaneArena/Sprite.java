@@ -10,16 +10,21 @@ import java.util.Arrays;
 import java.util.List;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.SVGPath;
+import javafx.scene.shape.Rectangle;
 
 /**
  *
  * @author NangTrongVuon
  */
 public abstract class Sprite {
+    
+    // pX, pY = pivot X, pivot Y
+    // iX, iY = X Y positions coordinates
+    
+    
     protected List<Image> imageStates = new ArrayList<>();
     protected ImageView spriteFrame;
-    protected SVGPath spriteBoundaries;
+    protected Rectangle spriteBoundaries;
     protected double iX;
     protected double iY;
     protected double pX;
@@ -31,9 +36,9 @@ public abstract class Sprite {
     protected Boolean isFlipV;
     protected Boolean isFlipH;
     
-    public Sprite(String svgData, double xLocation, double yLocation, Image... spriteCells) {
-        spriteBoundaries = new SVGPath();
-        spriteBoundaries.setContent(svgData);
+    public Sprite(double xLocation, double yLocation, Image... spriteCells) {
+      
+        
         spriteFrame = new ImageView(spriteCells[0]);
         imageStates.addAll(Arrays.asList(spriteCells));
         iX = xLocation;
@@ -62,11 +67,11 @@ public abstract class Sprite {
         this.spriteFrame = spriteFrame;
     }
 
-    public SVGPath getSpriteBoundaries() {
+    public Rectangle getSpriteBoundaries() {
         return spriteBoundaries;
     }
 
-    public void setSpriteBoundaries(SVGPath spriteBoundaries) {
+    public void setSpriteBoundaries(Rectangle spriteBoundaries) {
         this.spriteBoundaries = spriteBoundaries;
     }
 
