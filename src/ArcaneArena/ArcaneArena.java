@@ -18,6 +18,8 @@ import javafx.stage.Stage;
  */
 public class ArcaneArena extends Application {
     
+    // Z: Use Scroll
+    // C: Fist Attack
     boolean up, down, left, right, z, c;
    static final double WIDTH = 800, HEIGHT = 600;
     
