@@ -8,11 +8,11 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="ArcaneArena.jar" size="15613" download="eager" />
+    <jar href="ArcaneArena.jar" size="19252" download="eager" />
   </resources>
   <applet-desc  width="800" height="600" main-class="com.javafx.main.NoJavaFXFallback"  name="ArcaneArena" >
     <param name="requiredFXVersion" value="8.0+"/>
   </applet-desc>
-  <jfx:javafx-desc  width="800" height="600" main-class="ArcaneArena.ArcaneArena"  name="ArcaneArena" />
+  <jfx:javafx-desc  width="800" height="600" main-class="ArcaneArena.Main"  name="ArcaneArena" />
   <update check="always"/>
 </jnlp>
