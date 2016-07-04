@@ -19,9 +19,11 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import tile.TiledMap;
 
 
 public class Main extends Application
@@ -36,6 +38,8 @@ public class Main extends Application
     static int WIDTH = 800;
     static int HEIGHT = 800;
     static Handler handler;
+    static TiledMap tiledMap = new TiledMap();
+    static Image image1,image2,image3;
 
 
     static ArrayList<String> currentlyActiveKeys;
@@ -56,7 +60,7 @@ public class Main extends Application
         //Associate gc to the canvas to draw.
         gc = canvas.getGraphicsContext2D();
         //Get all images from all resources.
-
+        loadGraphics();
         /**
          * Main "game" loop
          */
@@ -68,19 +72,17 @@ public class Main extends Application
                 double t = (currentNanoTime - startNanoTime) / 1000000000.0; 
 
                 double x = 232 + 128 * Math.cos(t);
-                double y = 232 + 128 * Math.sin(t);;
+                double y = 232 + 128 * Math.sin(t);
                 tickAndRender(gc);
             }
         }.start();
-
         mainStage.show();
     }
 
     private static void prepareActionHandlers(Scene mainScene)
     {
-        // use a set so duplicates are not possible
         handler = new Handler();
-        handler.addEntity(new Player(200,200,64,64,true,Id.player, handler));
+        handler.addEntity(new Player(200,200,64,64,true,Id.player));
         currentlyActiveKeys = new ArrayList<String>();
         mainScene.setOnKeyPressed(new EventHandler<KeyEvent>()
         {
@@ -113,13 +115,13 @@ public class Main extends Application
                     if(event.getCode() == KeyCode.SPACE){
                         en.setVelY(10);
                     }
-                    if(event.getCode() == KeyCode.A){
-                        en.setVelY(4);
+                    if(event.getCode() == KeyCode.S){
+                        en.setVelY(0);
                     }
-                    if(event.getCode() == KeyCode.D){
+                    if(event.getCode() == KeyCode.A){
                         en.setVelX(0);
                     }
-                    if(event.getCode() == KeyCode.S){
+                    if(event.getCode() == KeyCode.D){
                         en.setVelX(0);
                     }
                 }
@@ -129,13 +131,32 @@ public class Main extends Application
 
     private static void loadGraphics()
     {
+//            image = new Image("bricks_2.png");
+       // if(TiledMap.typeWall.equalsIgnoreCase("wall")){
+            image1 = new Image("bricks_2.png");
+        //}
+        //else if(TiledMap.typeWall.equalsIgnoreCase("platform")){
+            image2 = new Image("bricks_1.png");
+        //}
+        //else if(TiledMap.typeWall.equalsIgnoreCase("Boundary")){
+            image3 = new Image("bricks_3.png");
+        //}
     }
-
-
+  public static Image returnImage1(){
+      return image1;
+  } 
+  public static Image returnImage2(){
+      return image2;
+  }  
+  public static Image returnImage3(){
+      return image3;
+  }      
     private static void tickAndRender(GraphicsContext gc)
-    {
+    {   // Update and render
         gc.clearRect(0, 0, WIDTH, HEIGHT);
+        tiledMap.mapData();
+        tiledMap.renderMapFromData(gc);
         handler.tick();
         handler.render(gc);
-    }
+    }   
 }

@@ -5,12 +5,12 @@
  */
 package ArcaneArena;
 
-import Entity.Player;
+import tile.Wall;
 
 /**
  *
  * @author owne
  */
 public enum Id {
-    player;
+    player,Wall;
 }

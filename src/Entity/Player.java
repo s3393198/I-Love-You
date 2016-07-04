@@ -5,9 +5,9 @@
  */
 package Entity;
 
-import ArcaneArena.Handler;
 import ArcaneArena.Id;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 
 /**
@@ -16,14 +16,15 @@ import javafx.scene.paint.Color;
  */
 public class Player extends Entity {
     
-    public Player(int x, int y, int width, int height, boolean solid, Id id, Handler handler) {
-        super(x, y, width, height, solid, id, handler);
+    public Player(int x, int y, int width, int height, boolean solid, Id id) {
+        super(x, y, width, height, solid, id);
     }
 
     @Override
     public void render(GraphicsContext g) {
+        Image character = new Image("1.png");
         g.setFill(Color.BLUE);
-        g.fillRect(x, y, width, height);
+        g.drawImage(character, x, y, width, height);
     }
 
     @Override
@@ -42,6 +43,6 @@ public class Player extends Entity {
         if(y +height>= 800){
             y = 800 - height;
         }
+        
     }
-    
 }

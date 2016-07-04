@@ -8,6 +8,7 @@ package Entity;
 import ArcaneArena.Handler;
 import ArcaneArena.Id;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.shape.Rectangle;
 
 /**
  *
@@ -15,21 +16,21 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public abstract class Entity {
     public int x, y;
-    public int width, height;
+    public int width = 40 , height = 40;
     
     public boolean solid;
     public int velX,velY;
     public Id id;
     public Handler handler;
 
-    public Entity(int x, int y, int width, int height, boolean solid,Id id,Handler handler) {
+    public Entity(int x, int y, int width, int height, boolean solid,Id id) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.solid = solid;
         this.id = id;
-        this.handler = handler;
+
     }
 
     public abstract void render(GraphicsContext g);
@@ -82,8 +83,7 @@ public abstract class Entity {
     public void die(){
         handler.removeEntity(this);
     }
-
-
-  
-    
+    public Rectangle getBounds(){
+        return new Rectangle(50, 50, width, height);
+    }
 }

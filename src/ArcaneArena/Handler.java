@@ -25,9 +25,9 @@ public class Handler {
         for(Entity en: entity){
             en.render(g);
         }
-        for(Tile ti: tile){
-            ti.render(g);
-        }
+//        for(Tile ti: tile){
+//            ti.render(g);
+//        }
     }
     public void tick(){
         for(Entity en: entity){
@@ -49,5 +49,8 @@ public class Handler {
 
     public void removeTile(Tile ti) {
         tile.remove(ti);
+    }
+    public LinkedList<Tile> getTile(){
+        return tile;
     }
 }

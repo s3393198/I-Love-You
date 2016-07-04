@@ -9,6 +9,7 @@ package tile;
 import ArcaneArena.Handler;
 import ArcaneArena.Id;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -16,22 +17,21 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public abstract class Tile {
     public int x, y;
-    public int width, height;
+    public int width = 40, height = 40;
     
     public boolean solid;
     public int velX,velY;
     public Id id;
     public Handler handler;
-    public Tile(int x, int y, int width, int height, boolean solid,Id id,Handler handler) {
+    public Tile(int x, int y, int width, int height, boolean solid,Id id) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.solid = solid;
         this.id = id;
-        this.handler = handler;
     }
-   public abstract void render(GraphicsContext g);
+   public abstract void render(GraphicsContext g,Image image);
         
     public abstract void tick();
     public void die(){
