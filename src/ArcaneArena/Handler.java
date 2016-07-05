@@ -8,6 +8,7 @@ package ArcaneArena;
 import Entity.Entity;
 import java.util.LinkedList;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import tile.Tile;
 
 /**
@@ -21,13 +22,13 @@ public class Handler {
     public Handler(){
         
     }
-    public void render(GraphicsContext g){
+    public void render(GraphicsContext g,Image image){
         for(Entity en: entity){
-            en.render(g);
+            en.render(g,image);
         }
-//        for(Tile ti: tile){
-//            ti.render(g);
-//        }
+        for(Tile ti: tile){
+            ti.render(g,image);
+        }
     }
     public void tick(){
         for(Entity en: entity){
@@ -50,7 +51,7 @@ public class Handler {
     public void removeTile(Tile ti) {
         tile.remove(ti);
     }
-    public LinkedList<Tile> getTile(){
+    public LinkedList<Tile> getTileList(){
         return tile;
     }
 }

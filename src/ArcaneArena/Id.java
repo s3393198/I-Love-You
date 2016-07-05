@@ -12,5 +12,5 @@ import tile.Wall;
  * @author owne
  */
 public enum Id {
-    player,Wall;
+    player,wall;
 }

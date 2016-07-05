@@ -9,6 +9,7 @@ import ArcaneArena.Id;
 import ArcaneArena.Main;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -35,21 +36,8 @@ public class Wall extends Tile {
 
     @Override
     public void render(GraphicsContext g,Image image) {
-//        if(type.equalsIgnoreCase("wall")){
-//            //g.drawImage(image, x, y, width, height);
-//            Main.returnImage1();
-//        }
-//        else if(type.equalsIgnoreCase("platform")){
-//           // g.fillRect(x, y, width, height);
-//           // g.drawImage(image, x, y, width, height);
-//           Main.returnImage2();
-//        }
-//        else if(type.equalsIgnoreCase("Boundary")){
-//            //g.fillRect(x, y, width, height);
-//            //g.drawImage(image, x, y, width, height);
-//            Main.returnImage3();
-//        }
-        g.drawImage(image, x, y, width, height);
+        g.setFill(Color.BLUE);
+        g.fillRect(x, y, width, height);
     }
 
     @Override

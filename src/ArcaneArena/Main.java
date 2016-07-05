@@ -24,6 +24,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import tile.TiledMap;
+import tile.Wall;
 
 
 public class Main extends Application
@@ -39,7 +40,7 @@ public class Main extends Application
     static int HEIGHT = 800;
     static Handler handler;
     static TiledMap tiledMap = new TiledMap();
-    static Image image1,image2,image3;
+    static Image image1,image2,image3,playerImage;
 
 
     static ArrayList<String> currentlyActiveKeys;
@@ -82,7 +83,8 @@ public class Main extends Application
     private static void prepareActionHandlers(Scene mainScene)
     {
         handler = new Handler();
-        handler.addEntity(new Player(200,200,64,64,true,Id.player));
+        handler.addEntity(new Player(700,500,64,64,true,Id.player,handler));
+        handler.addTile(new Wall(500, 500, 64, 64, true, Id.wall,null ));
         currentlyActiveKeys = new ArrayList<String>();
         mainScene.setOnKeyPressed(new EventHandler<KeyEvent>()
         {
@@ -92,16 +94,18 @@ public class Main extends Application
                 //currentlyActiveKeys.add(event.getCode().toString());
                 for(Entity en: handler.entity){   
                     if(event.getCode() == KeyCode.SPACE){
-                        en.setVelY(-20);
+                        if(en.isJumping() == false){
+                            en.setJumping(true);
+                        }
                     }
                     if(event.getCode() == KeyCode.S){
-                        en.setVelY(0);
+                        en.setVelY(0.0);
                     }
                     if(event.getCode() == KeyCode.A){
-                        en.setVelX(-5);
+                        en.setVelX(-5.0);
                     }
                     if(event.getCode() == KeyCode.D){
-                        en.setVelX(5);
+                        en.setVelX(5.0);
                     }
                 }
             }
@@ -113,7 +117,7 @@ public class Main extends Application
             {
                 for(Entity en: handler.entity){   
                     if(event.getCode() == KeyCode.SPACE){
-                        en.setVelY(10);
+                        en.setJumping(false);
                     }
                     if(event.getCode() == KeyCode.S){
                         en.setVelY(0);
@@ -131,16 +135,10 @@ public class Main extends Application
 
     private static void loadGraphics()
     {
-//            image = new Image("bricks_2.png");
-       // if(TiledMap.typeWall.equalsIgnoreCase("wall")){
             image1 = new Image("bricks_2.png");
-        //}
-        //else if(TiledMap.typeWall.equalsIgnoreCase("platform")){
             image2 = new Image("bricks_1.png");
-        //}
-        //else if(TiledMap.typeWall.equalsIgnoreCase("Boundary")){
             image3 = new Image("bricks_3.png");
-        //}
+            playerImage = new Image("1.png");
     }
   public static Image returnImage1(){
       return image1;
@@ -150,13 +148,16 @@ public class Main extends Application
   }  
   public static Image returnImage3(){
       return image3;
-  }      
+  }
+  public static Image returnPlayerImage(){
+      return playerImage;
+  }
     private static void tickAndRender(GraphicsContext gc)
     {   // Update and render
         gc.clearRect(0, 0, WIDTH, HEIGHT);
-        tiledMap.mapData();
-        tiledMap.renderMapFromData(gc);
+//        tiledMap.mapData();
+//        tiledMap.renderMapFromData(gc);
         handler.tick();
-        handler.render(gc);
+        handler.render(gc,playerImage);
     }   
 }

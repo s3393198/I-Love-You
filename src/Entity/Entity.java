@@ -7,38 +7,45 @@ package Entity;
 
 import ArcaneArena.Handler;
 import ArcaneArena.Id;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
+import tile.Tile;
 
 /**
  *
  * @author owne
  */
 public abstract class Entity {
-    public int x, y;
+    public double x, y;
     public int width = 40 , height = 40;
     
     public boolean solid;
-    public int velX,velY;
+    public final double gravity= 10;
+    public double velX,velY;
     public Id id;
     public Handler handler;
-
-    public Entity(int x, int y, int width, int height, boolean solid,Id id) {
+    public boolean jumping = false;
+    //public boolean falling = true;
+    
+    public Entity(int x, int y, int width, int height, boolean solid,Id id,Handler handler) {
         this.x = x;
         this.y = y;
         this.width = width;
         this.height = height;
         this.solid = solid;
         this.id = id;
-
+        this.handler = handler;
+        velY += gravity;
     }
 
-    public abstract void render(GraphicsContext g);
+    public abstract void render(GraphicsContext g,Image image);
         
     public abstract void tick();
 
 
-    public int getX() {
+    public double getX() {
         return x;
     }
 
@@ -46,7 +53,7 @@ public abstract class Entity {
         this.x = x;
     }
 
-    public int getY() {
+    public double getY() {
         return y;
     }
 
@@ -62,19 +69,19 @@ public abstract class Entity {
         this.solid = solid;
     }
 
-    public int getVelX() {
+    public double getVelX() {
         return velX;
     }
 
-    public void setVelX(int velX) {
+    public void setVelX(double velX) {
         this.velX = velX;
     }
 
-    public int getVelY() {
+    public double getVelY() {
         return velY;
     }
 
-    public void setVelY(int velY) {
+    public void setVelY(double velY) {
         this.velY = velY;
     }
     public Id getId(){
@@ -83,7 +90,77 @@ public abstract class Entity {
     public void die(){
         handler.removeEntity(this);
     }
-    public Rectangle getBounds(){
-        return new Rectangle(50, 50, width, height);
+
+    public boolean isJumping() {
+        return jumping;
+    }
+
+    public void setJumping(boolean jumping) {
+        this.jumping = jumping;
+    }
+
+//    public boolean isFalling() {
+//        return falling;
+//    }
+
+//    public void setFalling(boolean falling) {
+//        this.falling = falling;
+//    }
+
+    public double getGravity() {
+        return gravity;
+    }
+
+//    public void setGravity(double gravity) {
+//        this.gravity = gravity;
+//    }
+//    public Rectangle getBounds(){
+//        return new Rectangle(getX(), getY(), width, height);
+//    }
+//    public Rectangle getBoundstop(){
+//        return new Rectangle(getX() + 10,getY(),width-20,5);
+//    }
+//    public Rectangle getBoundBottom(){
+//        return new Rectangle(getX() + 10,getY()+ height - 5,width-20,5);
+//    }
+//    public Rectangle getBoundsLeft(){
+//        return new Rectangle(getX(), getY()+ 10,5,height-20);
+//    }
+//    public Rectangle getBoundsRight(){
+//        return new Rectangle(getX() + width - 5, getY() + 10,5, height - 20);
+//    }
+    public Rectangle2D getBoundary(){
+        return new Rectangle2D(getX(), getY(), width, height);
+    }
+//    public Rectangle2D getTopBoundary(){
+//        return new Rectangle2D(getX()+ 10,getY() , width-20, 5);
+//    }
+//    public Rectangle2D getBottomBoundary(){
+//        return new Rectangle2D(getX()+ 10,getY() + height , width-20, 5);
+//    }
+//    public Rectangle2D getLeftBoundary(){
+//        return new Rectangle2D(getX(),getY()+ 10 , 5, height);
+//    }
+//    public Rectangle2D getRightBoundary(){
+//        return new Rectangle2D(getX()+ 10,getY() , width-20, 5);
+//    }
+    //is intersected ?
+    public boolean intersectsEntity(Entity en){
+        return en.getBoundary().intersects(this.getBoundary());
+    }
+    public boolean intersectsObject(Tile ti){
+        return ti.getBoundary().intersects(this.getBoundary());
+    }
+    public boolean intersectsTopObject(Tile ti){
+        return ti.getTopBoundary().intersects(this.getBoundary());
+    }
+    public boolean intersectsLeftObject(Tile ti){
+        return ti.getLeftBoundary().intersects(this.getBoundary());
+    }
+    public boolean intersectsRightObject(Tile ti){
+        return ti.getRightBoundary().intersects(this.getBoundary());
+    }
+    public boolean intersectsBottomobject(Tile ti){
+        return ti.getBottomBoundary().intersects(this.getBoundary());
     }
 }

@@ -5,6 +5,7 @@
  */
 package tile;
 
+import ArcaneArena.Handler;
 import ArcaneArena.Id;
 import ArcaneArena.Main;
 import javafx.scene.canvas.GraphicsContext;
@@ -101,7 +102,7 @@ public class TiledMap
         int count = 1;
         Wall wall;
         for (int i = 0; i< 400; i++) {
-            wall = new Wall((i%20)*squareSize,(i/20)* squareSize, squareSize, squareSize, true, Id.Wall,typeWall);
+            wall = new Wall((i%20)*squareSize,(i/20)* squareSize, squareSize ,squareSize, true, Id.wall,typeWall);
 
             int location =  map[i/20][i%20];
             switch (location) {
